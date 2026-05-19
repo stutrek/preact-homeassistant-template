@@ -1,5 +1,5 @@
 {
-  "name": "hello-card",
+  "name": "__CARD_TAG__",
   "private": true,
   "version": "0.1.0",
   "description": "Starter template for Home Assistant cards built with preact-homeassistant",

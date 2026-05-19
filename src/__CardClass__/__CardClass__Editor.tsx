@@ -1,13 +1,13 @@
 import type { HomeAssistant } from 'preact-homeassistant';
-import type { HelloCardConfig } from './HelloCard';
+import type { __CardClass__Config } from './__CardClass__';
 
-interface HelloCardEditorProps {
+interface __CardClass__EditorProps {
   hass: HomeAssistant;
-  config: HelloCardConfig;
-  onConfigChanged: (config: HelloCardConfig) => void;
+  config: __CardClass__Config;
+  onConfigChanged: (config: __CardClass__Config) => void;
 }
 
-export function HelloCardEditor({ hass, config, onConfigChanged }: HelloCardEditorProps) {
+export function __CardClass__Editor({ hass, config, onConfigChanged }: __CardClass__EditorProps) {
   const sensorEntities = Object.keys(hass.states)
     .filter((id) => id.startsWith('sensor.'))
     .sort();

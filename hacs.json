@@ -1,5 +1,5 @@
 {
-  "name": "Hello Card",
+  "name": "__CARD_NAME__",
   "render_readme": true,
-  "filename": "hello-card.js"
+  "filename": "__CARD_TAG__.js"
 }

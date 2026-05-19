@@ -1,17 +1,17 @@
 import { useEntity } from 'preact-homeassistant';
-import './HelloCard.styles';
+import './__CardClass__.styles';
 
-export interface HelloCardConfig {
+export interface __CardClass__Config {
   entity: string;
 }
 
-export function HelloCard({ config }: { config: HelloCardConfig }) {
+export function __CardClass__({ config }: { config: __CardClass__Config }) {
   const entity = useEntity(config.entity);
 
   if (!config.entity) {
     return (
       <ha-card>
-        <div class="card-content hello-card__empty">
+        <div class="card-content __CARD_TAG____empty">
           No entity configured. Pick one in the card editor.
         </div>
       </ha-card>
@@ -21,7 +21,7 @@ export function HelloCard({ config }: { config: HelloCardConfig }) {
   if (!entity) {
     return (
       <ha-card>
-        <div class="card-content hello-card__empty">
+        <div class="card-content __CARD_TAG____empty">
           Waiting for <code>{config.entity}</code>...
         </div>
       </ha-card>
@@ -30,16 +30,16 @@ export function HelloCard({ config }: { config: HelloCardConfig }) {
 
   return (
     <ha-card>
-      <div class="card-content hello-card">
-        <h2 class="hello-card__heading">{entity.attributes?.friendly_name ?? config.entity}</h2>
-        <p class="hello-card__entity-id">{entity.entity_id}</p>
-        <p class="hello-card__state">
+      <div class="card-content __CARD_TAG__">
+        <h2 class="__CARD_TAG____heading">{entity.attributes?.friendly_name ?? config.entity}</h2>
+        <p class="__CARD_TAG____entity-id">{entity.entity_id}</p>
+        <p class="__CARD_TAG____state">
           {entity.state}
           {entity.attributes?.unit_of_measurement
             ? ` ${entity.attributes.unit_of_measurement}`
             : ''}
         </p>
-        <pre class="hello-card__attributes">{JSON.stringify(entity.attributes, null, 2)}</pre>
+        <pre class="__CARD_TAG____attributes">{JSON.stringify(entity.attributes, null, 2)}</pre>
       </div>
     </ha-card>
   );

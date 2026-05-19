@@ -28,5 +28,5 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/hello-card.js
+          files: dist/__CARD_TAG__.js
           generate_release_notes: true

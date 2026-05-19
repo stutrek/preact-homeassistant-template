@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/preact';
 import { HAProvider } from 'preact-homeassistant';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { createMockHass, noopSubscribe } from '../__test-utils__/mockHass';
-import { HelloCard } from './HelloCard';
+import { __CardClass__ } from './__CardClass__';
 
-describe('HelloCard', () => {
+describe('__CardClass__', () => {
   beforeEach(() => {
     localStorage.clear();
   });
@@ -25,7 +25,7 @@ describe('HelloCard', () => {
 
     render(
       <HAProvider hass={hass} subscribeToEntity={noopSubscribe}>
-        <HelloCard config={{ entity: 'sensor.temperature' }} />
+        <__CardClass__ config={{ entity: 'sensor.temperature' }} />
       </HAProvider>,
     );
 
@@ -39,7 +39,7 @@ describe('HelloCard', () => {
 
     render(
       <HAProvider hass={hass} subscribeToEntity={noopSubscribe}>
-        <HelloCard config={{ entity: '' }} />
+        <__CardClass__ config={{ entity: '' }} />
       </HAProvider>,
     );
 

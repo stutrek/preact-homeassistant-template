@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/preact-vite';
 import { useState } from 'preact/hooks';
-import type { HelloCardConfig } from '../HelloCard/HelloCard';
-import { HelloCardEditor } from '../HelloCard/HelloCardEditor';
+import type { __CardClass__Config } from '../__CardClass__/__CardClass__';
+import { __CardClass__Editor } from '../__CardClass__/__CardClass__Editor';
 import { createMockHass } from '../__test-utils__/mockHass';
 import '../__test-utils__/ha-stubs';
 
-const meta: Meta<typeof HelloCardEditor> = {
-  title: 'HelloCardEditor',
-  component: HelloCardEditor,
+const meta: Meta<typeof __CardClass__Editor> = {
+  title: '__CardClass__Editor',
+  component: __CardClass__Editor,
 };
 
 export default meta;
-type Story = StoryObj<typeof HelloCardEditor>;
+type Story = StoryObj<typeof __CardClass__Editor>;
 
 const sensors = {
   'sensor.temperature': {
@@ -36,13 +36,13 @@ const sensors = {
   },
 };
 
-const EditorHarness = ({ initial }: { initial: HelloCardConfig }) => {
-  const [config, setConfig] = useState<HelloCardConfig>(initial);
+const EditorHarness = ({ initial }: { initial: __CardClass__Config }) => {
+  const [config, setConfig] = useState<__CardClass__Config>(initial);
   const hass = createMockHass({ entities: sensors });
 
   return (
     <div style={{ maxWidth: 420 }}>
-      <HelloCardEditor hass={hass} config={config} onConfigChanged={setConfig} />
+      <__CardClass__Editor hass={hass} config={config} onConfigChanged={setConfig} />
       <pre style={{ marginTop: 16, padding: 12, background: '#1c1c1c', color: '#e1e1e1' }}>
         config = {JSON.stringify(config, null, 2)}
       </pre>

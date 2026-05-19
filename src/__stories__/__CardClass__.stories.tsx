@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/preact-vite';
 import { HAProvider } from 'preact-homeassistant';
-import { HelloCard } from '../HelloCard/HelloCard';
+import { __CardClass__ } from '../__CardClass__/__CardClass__';
 import { createMockHass, noopSubscribe } from '../__test-utils__/mockHass';
 import '../__test-utils__/ha-stubs';
 
-const meta: Meta<typeof HelloCard> = {
-  title: 'HelloCard',
-  component: HelloCard,
+const meta: Meta<typeof __CardClass__> = {
+  title: '__CardClass__',
+  component: __CardClass__,
 };
 
 export default meta;
-type Story = StoryObj<typeof HelloCard>;
+type Story = StoryObj<typeof __CardClass__>;
 
 const wrap = (entities: Record<string, any>, entity: string) => {
   const hass = createMockHass({ entities });
   return (
     <HAProvider hass={hass} subscribeToEntity={noopSubscribe}>
-      <HelloCard config={{ entity }} />
+      <__CardClass__ config={{ entity }} />
     </HAProvider>
   );
 };
