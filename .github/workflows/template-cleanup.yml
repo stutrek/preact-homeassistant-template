@@ -61,9 +61,19 @@ jobs:
             -not -path './storybook-static/*' \
             -print0)
 
-          # Rename files/dirs containing __CardClass__.
-          # Deepest-first so parent dirs are renamed after their children.
-          find . -depth -name '*__CardClass__*' \
+          # Rename directories containing __CardClass__ (shallowest first so parents
+          # exist before children are moved into them).
+          find . -type d -name '*__CardClass__*' \
+            -not -path './.git/*' \
+            -not -path './node_modules/*' \
+            | sort \
+            | while read -r path; do
+              new=$(echo "$path" | sed "s/__CardClass__/${CARD_CLASS}/g")
+              mv "$path" "$new"
+            done
+
+          # Rename files containing __CardClass__ (directories already renamed above).
+          find . -type f -name '*__CardClass__*' \
             -not -path './.git/*' \
             -not -path './node_modules/*' \
             | while read -r path; do
