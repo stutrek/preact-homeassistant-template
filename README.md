@@ -51,7 +51,7 @@ and its files, then commits the result and deletes itself. No manual rename step
 
 If you'd rather do it by hand, the workflow is just a `find … sed` + `mv` —
 search-and-replace the three tokens above and rename anything in `src/` that
-still contains `__CardClass__`.
+still contains `__CardClass__`. You can then delete `.github/workflows/template-cleanup.yml`.
 
 Once cleanup has run, replace the body of `src/<YourCard>/` with your own card.
 
