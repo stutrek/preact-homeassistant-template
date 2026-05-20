@@ -9,25 +9,12 @@ permissions:
 
 jobs:
   cleanup:
-    # Skip on the template repo itself; only run on clones.
-    if: github.event.repository.is_template == false
+    if: github.event.repository.is_template == false && github.event.head_commit.message == 'Initial commit'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Check whether this is the initial template commit
-        id: check
-        run: |
-          if [ "$(git log -1 --format='%s')" = "Initial commit" ]; then
-            echo "needs_cleanup=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "needs_cleanup=false" >> "$GITHUB_OUTPUT"
-          fi
 
       - name: Derive names from the repo
-        if: steps.check.outputs.needs_cleanup == 'true'
         id: names
         run: |
           TAG='${{ github.event.repository.name }}'
@@ -38,7 +25,6 @@ jobs:
           echo "name=$NAME" >> "$GITHUB_OUTPUT"
 
       - name: Replace placeholders and rename files
-        if: steps.check.outputs.needs_cleanup == 'true'
         env:
           CARD_TAG: ${{ steps.names.outputs.tag }}
           CARD_CLASS: ${{ steps.names.outputs.class }}
@@ -83,11 +69,9 @@ jobs:
             done
 
       - name: Remove this workflow
-        if: steps.check.outputs.needs_cleanup == 'true'
         run: rm .github/workflows/template-cleanup.yml
 
       - name: Commit and push
-        if: steps.check.outputs.needs_cleanup == 'true'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
