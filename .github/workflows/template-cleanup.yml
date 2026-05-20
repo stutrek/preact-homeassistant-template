@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 jobs:
   cleanup:
@@ -18,10 +17,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check whether placeholders are still present
+      - name: Check whether this is the initial template commit
         id: check
         run: |
-          if grep -rq --exclude-dir=node_modules --exclude-dir=.git -- '__CARD_TAG__' .; then
+          if [ "$(git log -1 --format='%s')" = "Initial commit" ]; then
             echo "needs_cleanup=true" >> "$GITHUB_OUTPUT"
           else
             echo "needs_cleanup=false" >> "$GITHUB_OUTPUT"
@@ -57,6 +56,7 @@ jobs:
               "$file"
           done < <(find . -type f \
             -not -path './.git/*' \
+            -not -path './.github/*' \
             -not -path './node_modules/*' \
             -not -path './dist/*' \
             -not -path './storybook-static/*' \
