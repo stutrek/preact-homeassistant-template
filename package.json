@@ -24,10 +24,21 @@
     "lint": "biome check src",
     "lint:fix": "biome check --write src",
     "format": "biome format --write src",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postinstall": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged && pnpm typecheck"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@biomejs/biome", "esbuild"]
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "esbuild",
+      "simple-git-hooks"
+    ]
   },
   "dependencies": {
     "home-assistant-js-websocket": "^9.6.0",
@@ -35,7 +46,9 @@
     "preact-homeassistant": "^0.1.0"
   },
   "dependenciesMeta": {
-    "preact-homeassistant": { "injected": true }
+    "preact-homeassistant": {
+      "injected": true
+    }
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -46,6 +59,8 @@
     "@testing-library/preact": "^3.2.4",
     "@types/node": "^24.10.1",
     "jsdom": "^26.1.0",
+    "lint-staged": "^17.0.5",
+    "simple-git-hooks": "^2.13.1",
     "storybook": "^10.1.11",
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
