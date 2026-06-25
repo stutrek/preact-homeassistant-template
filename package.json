@@ -1,7 +1,7 @@
 {
   "name": "__CARD_TAG__",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Starter template for Home Assistant cards built with preact-homeassistant",
   "author": {
     "name": "Stu Kabakoff",
@@ -43,7 +43,7 @@
   "dependencies": {
     "home-assistant-js-websocket": "^9.6.0",
     "preact": "^10.27.2",
-    "preact-homeassistant": "^0.2.3"
+    "preact-homeassistant": "^0.4.0"
   },
   "dependenciesMeta": {
     "preact-homeassistant": {

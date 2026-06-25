@@ -1,4 +1,4 @@
-import { useEntity } from 'preact-homeassistant';
+import { HACard, useEntity } from 'preact-homeassistant';
 import './__CardClass__.styles';
 
 export interface __CardClass__Config {
@@ -10,26 +10,26 @@ export function __CardClass__({ config }: { config: __CardClass__Config }) {
 
   if (!config.entity) {
     return (
-      <ha-card>
+      <HACard>
         <div class="card-content __CARD_TAG____empty">
           No entity configured. Pick one in the card editor.
         </div>
-      </ha-card>
+      </HACard>
     );
   }
 
   if (!entity) {
     return (
-      <ha-card>
+      <HACard>
         <div class="card-content __CARD_TAG____empty">
           Waiting for <code>{config.entity}</code>...
         </div>
-      </ha-card>
+      </HACard>
     );
   }
 
   return (
-    <ha-card>
+    <HACard align="top">
       <div class="card-content __CARD_TAG__">
         <h2 class="__CARD_TAG____heading">{entity.attributes?.friendly_name ?? config.entity}</h2>
         <p class="__CARD_TAG____entity-id">{entity.entity_id}</p>
@@ -41,6 +41,6 @@ export function __CardClass__({ config }: { config: __CardClass__Config }) {
         </p>
         <pre class="__CARD_TAG____attributes">{JSON.stringify(entity.attributes, null, 2)}</pre>
       </div>
-    </ha-card>
+    </HACard>
   );
 }
